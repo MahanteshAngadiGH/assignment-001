@@ -1,0 +1,152 @@
+Scenario-1 : No / Incorrect Source Directory
+
+    (base) C:\Users\MAngadi>python C:\projects\greenflag\scripts\greenflag-assignment.py
+    >>  ==========  Data Processing Job - data_process_job started ... : 2020-05-25 08:23:28.112190
+    
+    
+    Raw Data Files Path ... : C:\\projects\greenflag\\raw\\
+    The given/configured Path C:\\projects\greenflag\\raw\\ does not exist ... : False
+    Status (convert_csv_to_parquet) ... {'Status': 'Failed'}
+    
+    The Final Status of the job - data_process_job  execution is ... : {'Status': 'Failed'}
+    >>  ==========  Data Processing Job - data_process_job finished ... : 2020-05-25 08:23:28.129328
+
+
+------------------------------------------------------------------------------------------------------
+
+
+Scenario-2 : No Source Files in the Source Directory
+
+(base) C:\Users\MAngadi>python C:\projects\greenflag\scripts\greenflag-assignment.py
+>>  ==========  Data Processing Job - data_process_job started ... : 2020-05-25 08:26:17.590737
+
+
+Raw Data Files Path ... : C:\\projects\greenflag\\raw\\
+Raw Data File Names Pattern ... : weather*.csv
+Files to Process ... : []
+There are no source files to process in the given path ... : C:\\projects\greenflag\\raw\\
+Status (convert_csv_to_parquet) ... {'Status': 'Failed'}
+
+The Final Status of the job - data_process_job  execution is ... : {'Status': 'Failed'}
+>>  ==========  Data Processing Job - data_process_job finished ... : 2020-05-25 08:26:17.603147
+
+
+------------------------------------------------------------------------------------------------------
+
+Scenario-3 : No / Incorrect Stage (for Parquet files) Directory
+
+(base) C:\Users\MAngadi>python C:\projects\greenflag\scripts\greenflag-assignment.py
+>>  ==========  Data Processing Job - data_process_job started ... : 2020-05-25 08:38:57.814382
+
+
+Raw Data Files Path ... : C:\\projects\greenflag\\raw\\
+Raw Data File Names Pattern ... : weather*.csv
+Files to Process ... : ['C:\\\\projects\\greenflag\\\\raw\\weather.20160201.csv', 'C:\\\\projects\\greenflag\\\\raw\\weather.20160301.csv']
+Parquet Data Files Path ... : C:\\projects\greenflag\parquet\\
+The given/configured Stage (for Parquet files) Path C:\\projects\greenflag\parquet\\ does not exist ... : False
+Status (convert_csv_to_parquet) ... {'Status': 'Failed'}
+
+The Final Status of the job - data_process_job  execution is ... : {'Status': 'Failed'}
+>>  ==========  Data Processing Job - data_process_job finished ... : 2020-05-25 08:38:57.835328
+
+
+
+------------------------------------------------------------------------------------------------------
+
+Scenario-4 : When there are no error conditions - Printing the actual results
+
+(base) C:\Users\MAngadi>python C:\projects\greenflag\scripts\greenflag-assignment.py
+>>  ==========  Data Processing Job - data_process_job started ... : 2020-05-25 08:50:47.151182
+
+
+Raw Data Files Path ... : C:\\projects\greenflag\\raw\\
+Raw Data File Names Pattern ... : weather*.csv
+Files to Process ... : ['C:\\\\projects\\greenflag\\\\raw\\weather.20160201.csv', 'C:\\\\projects\\greenflag\\\\raw\\weather.20160301.csv']
+Parquet Data Files Path ... : C:\\projects\greenflag\parquet\\
+
+Processing the File Number - 1
+File Name ... : C:\\projects\greenflag\\raw\weather.20160201.csv
+Parquet File Name ... : c:\\projects\greenflag\\parquet\weather.20160201.parquet
+Write to Parquet File Name ... : c:\\projects\greenflag\\parquet\weather.20160201.parquet
+
+Processing the File Number - 2
+File Name ... : C:\\projects\greenflag\\raw\weather.20160301.csv
+Parquet File Name ... : c:\\projects\greenflag\\parquet\weather.20160301.parquet
+Write to Parquet File Name ... : c:\\projects\greenflag\\parquet\weather.20160301.parquet
+Status (convert_csv_to_parquet) ... {'Status': 'Success'}
+
+
+Parquet Data Files Path ... : C:\\projects\greenflag\parquet\\
+Parquet Data File Names Pattern ... : weather*.parquet
+File Name ... : ['C:\\\\projects\\greenflag\\parquet\\weather.20160201.parquet', 'C:\\\\projects\\greenflag\\parquet\\weather.20160301.parquet']
+
+
+Priniting/Logging the results ... :
+The maximum temperature is ... : 15.8
+The day with maximum temperature is ... : 2016-03-17T00:00:00
+The region with maximum temperature is ... : Highland & Eilean Siar
+
+The Final Status of the job - data_process_job  execution is ... : {'Status': 'Success'}
+>>  ==========  Data Processing Job - data_process_job finished ... : 2020-05-25 08:50:48.705620
+
+
+------------------------------------------------------------------------------------------------------
+
+Scenario-5 : The Python programme also creates a weather database - with weather table,
+             so that the required results cab be queried directly from the command prompt
+             on the weather table. Here it is how?
+
+How to Check the Tables & Query the Tables in the SQLite Database
+- Launch the command line and connect to the  weather_db.db database
+  COMMAND
+      sqlite3 C:\Projects\greenflag\sqlite_weather_db\weather_db.db
+
+
+- Use the .tables command to display the tables in the database
+  COMMAND
+      sqlite3> .tables
+  OUTPUT
+      weather
+
+
+- Use these commands to format the output:
+  COMMAND
+      sqlite3> .header on
+  ACTION
+      Displays the column headers for SELECT statement output
+  COMMAND
+      sqlite3> .mode column
+  ACTION
+      Displays the SELECT statement output in the columnar fashion
+
+
+- Use the following SELECT statements for required results
+
+  1. Query for What was the temperature on that day?
+  COMMAND
+      sqlite> SELECT max(ScreenTemperature) FROM weather;
+
+  OUTPUT
+      max(ScreenTemperature)
+      ----------------------
+      15.8
+
+
+  2. Query for Which date was the hottest day?
+  COMMAND
+      sqlite> SELECT ObservationDate FROM weather WHERE ScreenTemperature = (SELECT max(ScreenTemperature) FROM weather);
+
+  OUTPUT
+      ObservationDate
+      -------------------
+      2016-03-17T00:00:00
+
+  3. Query for In Which region was the hottest day?
+  COMMAND
+      sqlite> SELECT Region FROM weather WHERE ScreenTemperature = (SELECT max(ScreenTemperature) FROM weather);
+
+  OUTPUT
+      Region
+      ----------------------
+      Highland & Eilean Siar
+

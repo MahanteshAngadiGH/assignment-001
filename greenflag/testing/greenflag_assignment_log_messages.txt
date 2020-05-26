@@ -1,0 +1,41 @@
+(base) C:\Users\MAngadi>python C:\projects\greenflag\scripts\greenflag-assignment.py
+>>  ==========  Data Processing Job - data_process_job started ... : 2020-05-26 10:19:10.189223
+
+
+Raw Data Files Path ... : C:\\projects\greenflag\\raw\\
+Raw Data File Names Pattern ... : weather*.csv
+Files to Process ... : ['C:\\\\projects\\greenflag\\\\raw\\weather.20160201.csv', 'C:\\\\projects\\greenflag\\\\raw\\weather.20160301.csv']
+Parquet Data Files Path ... : C:\\projects\greenflag\parquet\\
+
+Processing the File Number - 1
+File Name ... : C:\\projects\greenflag\\raw\weather.20160201.csv
+Parquet File Name ... : c:\\projects\greenflag\\parquet\weather.20160201.parquet
+Write to Parquet File Name ... : c:\\projects\greenflag\\parquet\weather.20160201.parquet
+
+Processing the File Number - 2
+File Name ... : C:\\projects\greenflag\\raw\weather.20160301.csv
+Parquet File Name ... : c:\\projects\greenflag\\parquet\weather.20160301.parquet
+Write to Parquet File Name ... : c:\\projects\greenflag\\parquet\weather.20160301.parquet
+Status (convert_csv_to_parquet) ... : {'Status': 'Success'}
+
+
+Parquet Data Files Path ... : C:\\projects\greenflag\parquet\\
+Parquet Data File Names Pattern ... : weather*.parquet
+File Name ... : ['C:\\\\projects\\greenflag\\parquet\\weather.20160201.parquet', 'C:\\\\projects\\greenflag\\parquet\\weather.20160301.parquet']
+
+
+Priniting/Logging the results ... :
+The maximum temperature is ... : 15.8
+The day with maximum temperature is ... : 2016-03-17T00:00:00
+The region with maximum temperature is ... : Highland & Eilean Siar
+
+
+
+
+Creating a database for Weather data ... : C:\Projects\greenflag\sqlite_weather_db\weather_db.db
+SQL Lite Database Connection Object ... : <sqlite3.Connection object at 0x0000023204308810>
+Loading the data into the weather table from a dataframe.
+Finally close the database connection
+
+The Final Status of the job - data_process_job  execution is ... : None
+>>  ==========  Data Processing Job - data_process_job finished ... : 2020-05-26 10:19:13.536634

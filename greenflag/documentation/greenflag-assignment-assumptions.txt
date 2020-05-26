@@ -1,0 +1,55 @@
+Assumptions
+
+1. The pyarrow module is installed, otherwise the following imports will throw an error - No module named 'pyarrow'
+
+   If not installed and get an error of - No module named 'pyarrow'
+   
+   Then use one of the following:
+   
+   pyarrow with the conda package manager : conda install pyarrow -c conda-forge
+   OR
+   install binary wheels from PyPI with pip : pip install pyarrow
+
+
+2. Follwoing is the Directory structure for this assignment
+   C:\Projects\greenflag     ...   : main folder
+      - requirement          ...   : Contains the requirements - "Data Engineer Test.zip" file
+      - documentation        ...   : Contains the "greenflag-assignment-assumptions.txt" file about asumptions and few notes
+      - scripts              ...   : Contains the Python script files
+      - raw                  ...   : Contains the Raw CSV files
+      - parquet              ...   : Contains the Parquet files - the Raw CSV files after converted to Parquet are stored here
+      - sqlite_weather_db    ...   : Contais the weather database file
+      - testing              ...   : Contais two text files
+                                          - greenflag_assignment_test_scenarios_and_results.txt : contains the test scenarios and test results
+                                          - greenflag_assignment_log_messages.txt               : contains the log messages of one successful run
+
+
+3. There are 3 python files in addition to the main python programme:
+   greenflag-assignment.py   ...   : This is the main python script containing the main logic
+   config.py                 ...   : This file contains all the required configurations
+   common_utils.py           ...   : This file is used to put some common functions - here I have put the logging function
+   db_utils.py               ...   : This file contains all the database related functions
+
+
+4. For the statement in the pdf "Convert the weather data into parquet format", I have assumed that, 
+   I have convert to every csv into respective parquet file - as one to one.
+
+
+5. I have displayed/logged every stage of the process
+   - Reading CSV files & Printing the numberof reacords in each file
+   - Converting & Writing into Parquet files
+   - Reading Parquet files into Pandas
+   - Querying the data (for 3 results) from the Pandas and display the results which are displayed towrds the end in the
+
+
+6. I have also created a SQLite database to create a weather table and load with the data from the files.
+   And then query the weather table from the command prompt. The details of the same are provided as one of the
+   test scenario in the "greenflag_assignment_test_scenarios_and_results.txt" file
+
+
+7. I have run the programme for few test scenarios. The scenarios & the programme execution results are copied
+   in the "greenflag_assignment_test_scenarios_and_results.txt" file
+   
+
+8. I have also provided the complete log messages of one successful run
+   in the "greenflag_assignment_log_messages.txt" file
